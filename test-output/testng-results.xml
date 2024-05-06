@@ -1,29 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results ignored="0" total="2" passed="2" failed="0" skipped="0">
+<testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2024-04-30T18:13:37 IST" name="Default suite" finished-at="2024-04-30T18:16:23 IST" duration-ms="166253">
+  <suite started-at="2024-05-06T12:59:33 IST" name="Default suite" finished-at="2024-05-06T13:00:48 IST" duration-ms="75114">
     <groups>
     </groups>
-    <test started-at="2024-04-30T18:13:37 IST" name="Default test" finished-at="2024-04-30T18:16:23 IST" duration-ms="166253">
-      <class name="appiumproject.Appium.PaidEventBookTest">
-        <test-method is-config="true" signature="ConfigureAppium()[pri:0, instance:appiumproject.Appium.PaidEventBookTest@6cc558c6]" started-at="2024-04-30T18:13:37 IST" name="ConfigureAppium" finished-at="2024-04-30T18:13:56 IST" duration-ms="18800" status="PASS">
+    <test started-at="2024-05-06T12:59:33 IST" name="Default test" finished-at="2024-05-06T13:00:48 IST" duration-ms="75114">
+      <class name="appiumproject.Appium.ManageSalesTest">
+        <test-method is-config="true" signature="ConfigureAppium()[pri:0, instance:appiumproject.Appium.ManageSalesTest@5c44c582]" started-at="2024-05-06T12:59:33 IST" name="ConfigureAppium" finished-at="2024-05-06T12:59:50 IST" duration-ms="17211" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- ConfigureAppium -->
-        <test-method signature="eventbook()[pri:0, instance:appiumproject.Appium.PaidEventBookTest@6cc558c6]" started-at="2024-04-30T18:13:56 IST" name="eventbook" finished-at="2024-04-30T18:15:37 IST" duration-ms="101861" status="PASS">
+        <test-method signature="managesales()[pri:0, instance:appiumproject.Appium.ManageSalesTest@5c44c582]" started-at="2024-05-06T12:59:50 IST" name="managesales" finished-at="2024-05-06T13:00:47 IST" duration-ms="57266" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- eventbook -->
-        <test-method signature="scancode()[pri:1, instance:appiumproject.Appium.PaidEventBookTest@6cc558c6]" started-at="2024-04-30T18:15:37 IST" name="scancode" finished-at="2024-04-30T18:16:19 IST" duration-ms="41696" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- scancode -->
-        <test-method is-config="true" signature="tearDown()[pri:0, instance:appiumproject.Appium.PaidEventBookTest@6cc558c6]" started-at="2024-04-30T18:16:19 IST" name="tearDown" finished-at="2024-04-30T18:16:23 IST" duration-ms="3785" status="PASS">
+        </test-method> <!-- managesales -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:appiumproject.Appium.ManageSalesTest@5c44c582]" started-at="2024-05-06T13:00:47 IST" name="tearDown" finished-at="2024-05-06T13:00:48 IST" duration-ms="558" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDown -->
-      </class> <!-- appiumproject.Appium.PaidEventBookTest -->
+      </class> <!-- appiumproject.Appium.ManageSalesTest -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
 </testng-results>

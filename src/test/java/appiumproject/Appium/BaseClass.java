@@ -32,6 +32,7 @@ public class BaseClass {
 			
 		UiAutomator2Options options=  new UiAutomator2Options();
 		options.setDeviceName("ShivamEmulator");
+//		options.setDeviceName("samsung SM-M346B");
 		options.setApp("//Users//Apple//eclipse-workspace//SKILLBOX_Android//src//test//resources//base.apk");
 		
 		driver = new AndroidDriver(new URL("http://127.0.0.1:4723"), options);

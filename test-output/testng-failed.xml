@@ -3,13 +3,13 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="appiumproject.Appium.PaidEventBookTest">
+      <class name="appiumproject.Appium.FreeEventBookTest">
         <methods>
-          <include name="scancode"/>
+          <include name="AppiumTest"/>
           <include name="ConfigureAppium"/>
           <include name="tearDown"/>
         </methods>
-      </class> <!-- appiumproject.Appium.PaidEventBookTest -->
+      </class> <!-- appiumproject.Appium.FreeEventBookTest -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->
