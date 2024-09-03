@@ -1,43 +1,27 @@
 package skillbox.ObjectRepository;
 
-import java.util.List;
-
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-import skillbox.GenericUtilities.WebDriverUtility;
+import io.appium.java_client.android.AndroidDriver;
+import io.appium.java_client.pagefactory.AndroidFindBy;
+import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 
-public class EventListingPage extends WebDriverUtility {
+public class EventListingPage {
+	AndroidDriver driver;
 	
-	@FindBy(xpath="//div[@class='col-lg-4 col-sm-6 col-12 ng-star-inserted']")
-	private WebElement eventListFind;
+	@AndroidFindBy(xpath="//android.widget.TextView[@resource-id='com.skillbox.dev:id/dayItem' and @text='Music Events']")
+	private WebElement musicEventClk;
 	
-	@FindBy(xpath="//div[@class='event-result-box']/div[2]/h2")
-	private List<WebElement> eventName;
-		
-	public EventListingPage(WebDriver driver)
+	@AndroidFindBy(id="com.skillbox.dev:id/ll_Filter")
+	private WebElement filterClk;
+	
+	public EventListingPage(AndroidDriver driver)
 	{
-		PageFactory.initElements(driver, this);
+		this.driver =driver;
+		PageFactory.initElements(new AppiumFieldDecorator(driver), this);
 	}
 	
-	public WebElement getEventListFind() {
-		return eventListFind;
-	}
-
-	public List<WebElement> getEventName() {
-		return eventName;
-	}
-	
-	public void selectEventFromList(WebDriver driver, String eventname)
-	{
-		waitForElementToBeVisible(driver, eventListFind);
-		selectItemFromList(driver, eventname , eventName);
-		
-	}
 	
 
-	
-	
 }

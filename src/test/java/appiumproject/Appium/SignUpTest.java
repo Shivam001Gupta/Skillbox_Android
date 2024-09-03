@@ -1,50 +1,38 @@
 package appiumproject.Appium;
-
-import java.net.MalformedURLException;
-import org.apache.commons.lang3.RandomStringUtils;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import io.appium.java_client.AppiumBy;
+import skillbox.GenericUtilities.BaseClass;
+import skillbox.ObjectRepository.HomePage;
+import skillbox.ObjectRepository.MorePage;
+import skillbox.ObjectRepository.SignupPage;
 
 public class SignUpTest extends BaseClass{
 	
 	@Test
-	public void AppiumTest() throws MalformedURLException, InterruptedException
+	public void AppiumTest() throws Throwable
 	{
-		driver.findElement(AppiumBy.xpath("//android.widget.TextView[@text='More']")).click();
-		driver.findElement(AppiumBy.id("com.skillbox.dev:id/profileTv")).click();
-		Thread.sleep(3000);
-		driver.findElement(AppiumBy.id("com.skillbox.dev:id/btnSignUp")).click();
-		Thread.sleep(5000);
-		driver.findElement(AppiumBy.id("com.skillbox.dev:id/etFullName")).sendKeys("Test Profile");
-		driver.findElement(AppiumBy.id("com.skillbox.dev:id/etPhoneNumber")).sendKeys("8790192817");
-		String c = RandomStringUtils.randomAlphabetic(7);
-		driver.findElement(AppiumBy.id("com.skillbox.dev:id/etEmailId")).sendKeys(c+"@gmail.com");
-		driver.findElement(AppiumBy.id("com.skillbox.dev:id/etPassword")).sendKeys("12345678");
-		driver.findElement(AppiumBy.id("com.skillbox.dev:id/btnNextSignUp")).click();
+		
+		HomePage hp = new HomePage(driver);
+		hp.getMoreClk().click();
+		
+		MorePage mp = new MorePage(driver);
+		
+		mp.getLoginSignupClk().click();
+		Thread.sleep(10000);
+		
+		SignupPage sp = new SignupPage(driver);
+		sp.signUpuser(driver, "Tena","9090901010" ,"12345678");
 	    
 		
 			
-		
-	    
+		    
 //	    String success = driver.findElement(AppiumBy.className("android.widget.Toast")).getText();
 //	    
 //		Assert.assertTrue(success.contains("successfully"));
 //		System.out.println(success);
 //	    
-
-	    
-		
-		
-
-		
-
-		
-		
-		
-		
-		
-		
 		
 		
 	}

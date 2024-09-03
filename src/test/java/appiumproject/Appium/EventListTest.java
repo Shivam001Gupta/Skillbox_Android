@@ -4,6 +4,7 @@ import org.openqa.selenium.remote.RemoteWebElement;
 import org.testng.annotations.Test;
 import com.google.common.collect.ImmutableMap;
 import io.appium.java_client.AppiumBy;
+import skillbox.GenericUtilities.BaseClass;
 
 public class EventListTest extends BaseClass{
 	

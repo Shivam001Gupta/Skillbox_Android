@@ -1,85 +1,61 @@
 package appiumproject.Appium;
-import java.net.MalformedURLException;
-import java.time.Duration;
-import org.openqa.selenium.By;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import io.appium.java_client.AppiumBy;
+import skillbox.GenericUtilities.BaseClass;
+import skillbox.ObjectRepository.AddonPage;
+import skillbox.ObjectRepository.EventBookingPage;
+import skillbox.ObjectRepository.EventDetailPage;
+import skillbox.ObjectRepository.HomePage;
+import skillbox.ObjectRepository.LoginPage;
+import skillbox.ObjectRepository.PaymentPage;
+import skillbox.ObjectRepository.SearchPage;
+import skillbox.ObjectRepository.TicketPage;
 
 public class AddOnEventBookSliderTest extends BaseClass{
 	
 	@Test
-	public void AppiumTest() throws MalformedURLException, InterruptedException
+	public void AppiumTest() throws Throwable
 	{
 		
-		Thread.sleep(5000);			
-		driver.findElement(AppiumBy.xpath("//android.widget.TextView[@text='Search']")).click();
-		Thread.sleep(2000);
-		driver.findElement(AppiumBy.id("com.skillbox.dev:id/etSearchText")).click();
-		driver.findElement(AppiumBy.id("com.skillbox.dev:id/etSearchText")).sendKeys("Add-on Test Slider");
-		Thread.sleep(5000);
-		driver.findElement(AppiumBy.xpath("//android.widget.TextView[@text='Add-on Test Slider']")).click();		
-		Thread.sleep(5000);													
-		driver.findElement(AppiumBy.xpath("//android.widget.Button[@text='Book Now']")).click();
-		Thread.sleep(2000);
-		driver.findElement(AppiumBy.id("com.skillbox.dev:id/addTicket")).click();
-		Thread.sleep(2000);
-		driver.findElement(AppiumBy.xpath("//android.widget.TextView[@text='Proceed']")).click();
-		Thread.sleep(2000);
-		driver.findElement(AppiumBy.id("com.skillbox.dev:id/etEmailId")).sendKeys("guptashivam1711@gmail.com");
-		driver.findElement(AppiumBy.id("com.skillbox.dev:id/btnNext")).click();
-	    Thread.sleep(5000);
-		driver.findElement(AppiumBy.id("com.skillbox.dev:id/tvTryWithPassword")).click();
-		Thread.sleep(2000);
-		driver.findElement(AppiumBy.id("com.skillbox.dev:id/etPassword")).sendKeys("12345678");
-		driver.findElement(AppiumBy.id("com.skillbox.dev:id/btnNext")).click();
-		Thread.sleep(5000);
-//		driver.findElement(AppiumBy.id("com.skillbox.dev:id/imgCross")).click();
-		Thread.sleep(5000);
-		driver.findElement(AppiumBy.xpath("//android.widget.TextView[@text='Proceed']")).click();
-		Thread.sleep(5000);
-		driver.findElement(AppiumBy.xpath("//android.widget.TextView[@text='Select Delivery']")).click();
-		Thread.sleep(2000);
-		driver.findElement(AppiumBy.xpath("//android.widget.TextView[@text='Home Delivery']")).click();
-		Thread.sleep(2000);
-		driver.findElement(AppiumBy.xpath("//android.widget.ImageView[@resource-id=\"com.skillbox.dev:id/imgSelect\"]")).click();
-		Thread.sleep(2000);
-		driver.findElement(AppiumBy.xpath("//android.widget.TextView[@text='Select Topup']")).click();
-		Thread.sleep(2000);
-		driver.findElement(AppiumBy.xpath("//android.widget.TextView[@text='Wrist Band -Topup']")).click();
-		Thread.sleep(2000);
-		driver.findElement(AppiumBy.xpath("//android.widget.TextView[@text='Pay INR  690']")).click();
-		Thread.sleep(2000);
-		driver.findElement(By.id("com.skillbox.dev:id/etPinCode")).sendKeys("231001");
-		driver.findElement(By.id("com.skillbox.dev:id/etCityadd")).click();
-		Thread.sleep(2000);
-		driver.findElement(AppiumBy.xpath("//android.widget.TextView[@text='New Delhi']")).click();
-		Thread.sleep(2000);
-
-		driver.findElement(By.id("com.skillbox.dev:id/shippingAddress")).sendKeys("Trimohani Ramlila Maidan ke samne");
-		driver.findElement(AppiumBy.xpath("//android.widget.TextView[@text='Pay INR  690']")).click();
-		Thread.sleep(5000);
-		driver.findElement(AppiumBy.id("com.skillbox.dev:id/etPicode")).sendKeys("231001");
+		Thread.sleep(5000);	
 		
-		driver.findElement(AppiumBy.xpath("//android.widget.TextView[@text='Change ']")).click();
-		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
-		wait.until(ExpectedConditions.attributeContains(driver.findElement(AppiumBy.xpath("//android.widget.TextView[@text='Payment Options']")), "text", "Payment Options"));
-		Thread.sleep(7000);
-		driver.findElement(AppiumBy.androidUIAutomator("new UiScrollable(new UiSelector()).scrollIntoView(text(\"success@razorpay\"))"));
-		driver.findElement(AppiumBy.xpath("//android.widget.TextView[@text='success@razorpay']")).click();
-		Thread.sleep(2000);
-		driver.findElement(AppiumBy.xpath("//android.widget.Button[@text='PAY VIA UPI']")).click();
-		Thread.sleep(15000);
+		HomePage hp = new HomePage(driver);
+		hp.getSearchClk().click();
+		Thread.sleep(5000);	
 		
+		SearchPage sp = new SearchPage(driver);
+		sp.eventSearch(driver, "Add-on Test Slider");						
+		Thread.sleep(10000);
+		
+		EventDetailPage edp = new EventDetailPage(driver);
+		edp.getBookNowBtn().click();
+		Thread.sleep(2000);
+						
+		TicketPage tp = new TicketPage(driver);
+		tp.eventTicketSelect(driver);
 
-					
+		
+		LoginPage lp = new LoginPage(driver);
+		lp.loginUser(driver, "shivam@skillboxes.com", "12345678");
+		
+		tp.getProceedBtn().click();
+		Thread.sleep(5000);
+		
+		AddonPage ap = new AddonPage(driver);
+		ap.addonSelect(driver, "231001", "Trimohani Mirzapur");
+		
+		EventBookingPage ebp = new EventBookingPage(driver);
+		ebp.pinAndPay(driver, "231001");
+		
+		PaymentPage pp = new PaymentPage(driver);
+		pp.paymentSuccess(driver);
+		
 		String success = driver.findElement(AppiumBy.xpath("(//android.widget.TextView[@resource-id='com.skillbox.dev:id/orderNumber'])[2]")).getText();
 		System.out.print("Your Order No. is: ");
 		Assert.assertTrue(success.contains("SB"));
 		System.out.println(success);
-		
+
 				
 	}
 	

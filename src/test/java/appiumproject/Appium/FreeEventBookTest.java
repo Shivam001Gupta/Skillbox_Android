@@ -1,63 +1,51 @@
 package appiumproject.Appium;
-import java.net.MalformedURLException;
-import java.time.Duration;
-
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.remote.RemoteWebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import com.google.common.collect.ImmutableMap;
 import io.appium.java_client.AppiumBy;
+import skillbox.GenericUtilities.BaseClass;
+import skillbox.ObjectRepository.EventBookingPage;
+import skillbox.ObjectRepository.EventDetailPage;
+import skillbox.ObjectRepository.HomePage;
+import skillbox.ObjectRepository.LoginPage;
+import skillbox.ObjectRepository.SearchPage;
+import skillbox.ObjectRepository.TicketPage;
 
 
 public class FreeEventBookTest extends BaseClass{
 	
 	@Test
-	public void AppiumTest() throws MalformedURLException, InterruptedException
+	public void AppiumTest() throws Throwable
 	{
+		
+
 		Thread.sleep(5000);	
 		
-		driver.findElement(AppiumBy.xpath("//android.widget.TextView[@text='Search']")).click();
-		Thread.sleep(2000);
-		driver.findElement(AppiumBy.id("com.skillbox.dev:id/etSearchText")).click();
-		driver.findElement(AppiumBy.id("com.skillbox.dev:id/etSearchText")).sendKeys("free event kt");
-		Thread.sleep(5000);
-		driver.findElement(AppiumBy.xpath("//android.widget.TextView[@text='Free Event KT']")).click();		
-		Thread.sleep(5000);													
-		driver.findElement(AppiumBy.xpath("//android.widget.Button[@text='Book Now']")).click();
-		Thread.sleep(5000);
-		driver.findElement(AppiumBy.id("com.skillbox.dev:id/addTicket")).click();
-		Thread.sleep(2000);
-		driver.findElement(AppiumBy.xpath("//android.widget.TextView[@text='Proceed']")).click();
-		Thread.sleep(2000);
-		driver.findElement(AppiumBy.id("com.skillbox.dev:id/etEmailId")).sendKeys("guptashivam1711@gmail.com");
-		driver.findElement(AppiumBy.id("com.skillbox.dev:id/btnNext")).click();
-	    Thread.sleep(5000);
-		driver.findElement(AppiumBy.id("com.skillbox.dev:id/tvTryWithPassword")).click();
-		Thread.sleep(2000);
-		driver.findElement(AppiumBy.id("com.skillbox.dev:id/etPassword")).sendKeys("12345678");
-		driver.findElement(AppiumBy.id("com.skillbox.dev:id/btnNext")).click();
-		Thread.sleep(5000);
-//		driver.findElement(AppiumBy.id("com.skillbox.dev:id/imgCross")).click();
-		Thread.sleep(5000);
-		driver.findElement(AppiumBy.xpath("//android.widget.TextView[@text='Proceed']")).click();
-		Thread.sleep(5000);
-		driver.findElement(AppiumBy.id("com.skillbox.dev:id/etPicode")).sendKeys("231001");
-		Thread.sleep(2000);
-
-			
-		((JavascriptExecutor) driver).executeScript("mobile: dragGesture", ImmutableMap.of(
-				"elementId",  	((RemoteWebElement)driver.findElement(AppiumBy.xpath("//android.widget.RelativeLayout[@resource-id=\"com.skillbox.dev:id/checkInButton1\"]/android.widget.ImageView"))).getId(), 
-		    "endX", 1035,
-		    "endY", 2161
-		));
+		HomePage hp = new HomePage(driver);
+		hp.getSearchClk().click();
+		Thread.sleep(5000);	
 		
+		SearchPage sp = new SearchPage(driver);
+		sp.eventSearch(driver, "free event kt");						
+		Thread.sleep(10000);
+		
+		EventDetailPage edp = new EventDetailPage(driver);
+		edp.getBookNowBtn().click();
+		Thread.sleep(2000);
+						
+		TicketPage tp = new TicketPage(driver);
+		tp.eventTicketSelect(driver);
 
 		
-		Thread.sleep(7000);
+		LoginPage lp = new LoginPage(driver);
+		lp.loginUser(driver, "shivam@skillboxes.com", "12345678");
 		
+		tp.getProceedBtn().click();
+		Thread.sleep(5000);
+	
+		EventBookingPage ebp = new EventBookingPage(driver);	
+		ebp.pinAndPayFree(driver, "231001");
+		Thread.sleep(5000);	
+	
 
 	    String success = driver.findElement(AppiumBy.xpath("(//android.widget.TextView[@resource-id='com.skillbox.dev:id/orderNumber'])[2]")).getText();
 	    System.out.print("Your Order No. is: ");
