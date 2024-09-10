@@ -4,7 +4,7 @@ import org.openqa.selenium.WebElement;
 
 import io.appium.java_client.pagefactory.AndroidFindBy;
 
-public class FiterPage {
+public class FilterPage {
 	
 	@AndroidFindBy(id="com.skillbox.dev:id/tvSort_By")
 	private WebElement sortbyClk;

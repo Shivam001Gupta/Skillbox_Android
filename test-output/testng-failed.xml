@@ -6,9 +6,9 @@
       <class name="appiumproject.Appium.PaidEventBookTest">
         <methods>
           <include name="scancode"/>
+          <include name="tearDown"/>
           <include name="ConfigureAppium"/>
           <include name="eventbook"/>
-          <include name="tearDown"/>
         </methods>
       </class> <!-- appiumproject.Appium.PaidEventBookTest -->
     </classes>
